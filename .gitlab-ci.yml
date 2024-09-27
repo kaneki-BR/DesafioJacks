@@ -13,7 +13,4 @@ build:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD"
     - docker push "$CI_REGISTRY_USER"/teste0:latest
 
-deploy:
-  stage: deploy
-  script:
-    - helm upgrade --install teste0 ./charts/teste0
+
