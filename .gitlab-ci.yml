@@ -5,12 +5,14 @@ services:
 stages:
   - build
 
+variables:
+  IMAGE_TAG: registry.gitlab.com/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME:latest
 
 build:
   stage: build
   script:
-    - docker build -t "$CI_REGISTRY_USER"/teste0:latest .
-    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD"
-    - docker push "$CI_REGISTRY_USER"/teste0:latest
+    - docker build -t $IMAGE_TAG .
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - docker push "$IMAGE_TAG
 
 
