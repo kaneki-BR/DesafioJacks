@@ -4,12 +4,12 @@ services:
 
 stages:
   - build
-  
+
 build:
   stage: build
   script:
-    - docker build -t <dockerhub-username>/my-app:latest .
+    - docker build -t kaneki100/teste0:latest .
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD"
-    - docker push <dockerhub-username>/my-app:latest
+    - docker push kaneki100/teste0:latest
 
 
