@@ -41,3 +41,7 @@ kubectl port-forward service/desafio-jacks 8080:80
 
 ##Customização
 A página HTML pode ser customizada editando o conteúdo do ConfigMap no arquivo configmap.yaml:
+
+#CI/CD incluso
+
+
