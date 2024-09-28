@@ -1,0 +1,43 @@
+# Desafio Jacks: Aplicação Web em Kubernetes
+
+## Descrição
+Este projeto consiste em uma aplicação web simples hospedada em um cluster Kubernetes, utilizando Helm para gerenciamento de pacotes. A aplicação exibe uma página HTML que pode ser customizada via ConfigMap.
+
+## Tecnologias Utilizadas
+- Docker
+- Kubernetes (kind)
+- Helm
+- Nginx
+
+## Estrutura do Projeto
+desafio-jacks/ 
+├── Chart.yaml 
+├── values.yaml 
+├── templates/ 
+│ ├── deployment.yaml 
+│ ├── service.yaml 
+│ ├── configmap.yaml 
+│ ├── _helpers.tpl
+└── index.html
+
+## Passos para Execução
+
+### 1. Criar um Cluster com kind
+Para criar um cluster Kubernetes usando kind, execute:
+```bash
+kind create cluster --name cluster-teste
+
+# Build the Docker image
+docker build -t <your-dockerhub-username>/desafio-jacks:latest .
+
+# Push to Docker Hub
+docker push <your-dockerhub-username>/desafio-jacks:latest
+
+# Helm install
+helm install desafio-jacks ./
+
+# Para acessar a aplicação, exponha o serviço usando:
+kubectl port-forward service/desafio-jacks 8080:80
+
+##Customização
+A página HTML pode ser customizada editando o conteúdo do ConfigMap no arquivo configmap.yaml:

@@ -7,4 +7,13 @@ metadata:
     desafio: jackexperts
 data:
   index.html: |
-    {{ .Values.configMap.htmlContent | indent 4 }}
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Página Customizável via Helm</title>
+    </head>
+    <body>
+        <h1>Bem-vindo ao Desafio Jacks</h1>
+        <p>Esta página foi customizada via ConfigMap e Helm.</p>
+    </body>
+    </html>
