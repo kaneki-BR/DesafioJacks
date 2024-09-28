@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "desafio-jacks.fullname" . }}
+  labels:
+    app: {{ include "desafio-jacks.name" . }}
+    desafio: jackexperts
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "desafio-jacks.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "desafio-jacks.name" . }}
+        desafio: jackexperts
+    spec:
+      containers:
+        - name: desafio-jacks
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: html-volume
+              mountPath: /usr/share/nginx/html/index.html
+              subPath: index.html
+      volumes:
+        - name: html-volume
+          configMap:
+            name: {{ include "desafio-jacks.fullname" . }}-configmap

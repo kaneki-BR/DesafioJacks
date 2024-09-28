@@ -1,0 +1,23 @@
+replicaCount: 1
+
+image:
+  repository: kaneki100/desafio-jacks
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: NodePort
+  port: 80
+
+configMap:
+  htmlContent: |
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Página Customizável via Helm</title>
+    </head>
+    <body>
+        <h1>Bem-vindo ao Desafio Jacks</h1>
+        <p>Esta página foi customizada via ConfigMap e Helm.</p>
+    </body>
+    </html>
